@@ -1,10 +1,13 @@
 #include "myobject.h"
+#include <iostream>
 
 Nan::Persistent<v8::Function> MyObject::constructor;
 
 MyObject::MyObject(double value) : value_(value) {}
 
-MyObject::~MyObject() {}
+MyObject::~MyObject() {
+  std::cout << "destruct" << std::endl;
+}
 
 void MyObject::Init(v8::Local<v8::Object> exports) {
   v8::Local<v8::Context> context = exports->CreationContext();
